@@ -1,6 +1,6 @@
 class Api::V1::WatchableSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :title, :description, :thumbnail_key, :featured_thumbnail_key
+  attributes :id, :title, :description
 
   attribute :type do |object|
     object.model_name
@@ -12,15 +12,23 @@ class Api::V1::WatchableSerializer
     end
   end
 
-  attribute :video_key do |object|
+  attribute :thumbnail_url do |object|
+    AWS_BUCKET.object("thumbnails/#{object.thumbnail_key}").presigned_url(:get, expires_in: 120)
+  end
+
+  attribute :thumbnail_cover_url do |object|
+    AWS_BUCKET.object("thumbnails/#{object.thumbnail_cover_key}").presigned_url(:get, expires_in: 120)
+  end
+
+  attribute :video_url do |object|
     if object[:video_key].present?
-      object.video_key
+      AWS_BUCKET.object("videos/#{object.video_key}").presigned_url(:get, expires_in: 120)
     end
   end
 
-  attribute :featured_thumbnail_key do |object|
+  attribute :featured_thumbnail_url do |object|
     if object[:featured_thumbnail_key].present?
-      object.featured_thumbnail_key
+      AWS_BUCKET.object("thumbnails/#{object.featured_thumbnail_key}").presigned_url(:get, expires_in: 120)
     end
   end
 end
