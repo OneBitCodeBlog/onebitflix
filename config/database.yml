@@ -1,0 +1,8 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: leonardo
+  password: 12345678
+development:
+  <<: *default
+  database: onebitflix2_development
