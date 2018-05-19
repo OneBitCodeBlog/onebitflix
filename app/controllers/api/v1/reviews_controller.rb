@@ -1,5 +1,5 @@
 class Api::V1::ReviewsController < ApplicationController
-  # skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
   def index
     @reviews = Review.where(reviewable_id: params[:id], reviewable_type: params[:type].capitalize!) 
