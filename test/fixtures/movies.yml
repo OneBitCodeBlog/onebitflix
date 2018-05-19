@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  thumbnail_key: MyString
+  video_key: MyString
+  episode_number: 1
+  featured_thumbnail_key: MyString
+  serie: one
+  category: one
+  thumbnail_cover_key: MyString
+
+two:
+  title: MyString
+  description: MyText
+  thumbnail_key: MyString
+  video_key: MyString
+  episode_number: 1
+  featured_thumbnail_key: MyString
+  serie: two
+  category: two
+  thumbnail_cover_key: MyString

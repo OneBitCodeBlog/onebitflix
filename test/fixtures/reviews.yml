@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rating: 1
+  description: MyText
+  reviewable: one
+  reviewable_type: Reviewable
+  user: one
+
+two:
+  rating: 1
+  description: MyText
+  reviewable: two
+  reviewable_type: Reviewable
+  user: two
