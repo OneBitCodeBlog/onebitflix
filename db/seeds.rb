@@ -1,3 +1,5 @@
+## Customize de acordo com os videos e thumbnails de exemplo que você subir para o seu servidor
+
 # Categories
 ror = Category.create(name: 'Ruby On Rails')
 talks = Category.create(name: 'Talks')
