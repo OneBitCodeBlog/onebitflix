@@ -2,7 +2,7 @@
   <v-app>
     <Header/>
     <v-content>
-      <h4 class="white--text">Main Component</h4>
+      <router-view></router-view>
     </v-content>
     <Footer/>
   </v-app>
