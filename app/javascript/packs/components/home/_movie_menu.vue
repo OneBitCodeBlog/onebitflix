@@ -10,7 +10,7 @@
           <v-icon color="white">clear</v-icon>
         </v-btn>
       </v-flex>
-      <!-- <Details v-if="contentActive == 'details'" /> -->
+      <Details v-if="contentActive == 'details'" :watchable="watchable" />
       <!-- <Episodes v-if="contentActive == 'episodes'"/> -->
       <!-- <Reviews v-if="contentActive == 'reviews'" /> -->
     </v-layout>
@@ -35,13 +35,15 @@
 </template>
 
 <script>
+  import Details from './_details.vue';
+
   // ------- Dados Fake apenas para testarmos o layout -------- //
   const watchable = {
     id: 1,
     type: 'serie',
     attributes: {
-      title: 'Ruby On Rails Api Completa',
-      reviews_count: 5,
+      title: 'Ruby On Rails API Completa',
+      reviews_count: 2,
       description: 'Saber como criar e consumir API’s é fundamental para qualquer programador, então nessa pequena série nós vamos ver o que é essencial para criar uma usando RoR.',
       category: 'Ruby On Rails',
       thumbnail_cover_url: 'https://onebitcode.com/wp-content/uploads/2018/05/rails-admin-serie-cover.png'
@@ -54,7 +56,7 @@
         type: Number,
         required: true,
       },
-      kind: {
+      type: {
         type: String,
         required: true,
       },
@@ -78,7 +80,7 @@
       }
     },
     components: {
-
+      Details: Details
     }
   }
 </script>

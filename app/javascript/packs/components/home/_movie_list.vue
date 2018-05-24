@@ -13,7 +13,7 @@
         </slick>
       </v-flex>
     </v-layout>
-    <MovieMenu v-if="menuOpen" :id="movieId" :kind="movieKind" :closeDetails="closeDetails"/>
+    <MovieMenu v-if="menuOpen" :id="movieId" :type="movieType" :closeDetails="closeDetails"/>
   </div>
 </template>
 
@@ -36,7 +36,7 @@
       return {
         menuOpen: false,
         movieId: null,
-        movieKind: 'serie',
+        movieType: 'serie',
         slickOptions: {
           slidesToShow: 4,
           arrows: false,
