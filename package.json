@@ -12,7 +12,8 @@
     "vue-router": "^3.0.1",
     "vue-slick": "^1.1.12",
     "vue-template-compiler": "^2.5.16",
-    "vuetify": "^1.0.18"
+    "vuetify": "^1.0.18",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
