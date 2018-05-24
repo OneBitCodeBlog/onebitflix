@@ -12,7 +12,7 @@
       </v-flex>
       <Details v-if="contentActive == 'details'" :watchable="watchable" />
       <!-- <Episodes v-if="contentActive == 'episodes'"/> -->
-      <!-- <Reviews v-if="contentActive == 'reviews'" /> -->
+      <Reviews v-if="contentActive == 'reviews'" :watchable="watchable" />
     </v-layout>
     <v-layout row wrap class="navigation">
       <v-flex md6>
@@ -36,6 +36,7 @@
 
 <script>
   import Details from './_details.vue';
+  import Reviews from './_reviews.vue';
 
   // ------- Dados Fake apenas para testarmos o layout -------- //
   const watchable = {
@@ -80,7 +81,8 @@
       }
     },
     components: {
-      Details: Details
+      Details: Details,
+      Reviews: Reviews
     }
   }
 </script>

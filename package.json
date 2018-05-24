@@ -7,6 +7,7 @@
     "material-design-icons-iconfont": "^3.0.3",
     "vue": "^2.5.16",
     "vue-loader": "14.2.2",
+    "vue-rate-it": "^2.1.0",
     "vue-router": "^3.0.1",
     "vue-slick": "^1.1.12",
     "vue-template-compiler": "^2.5.16",
