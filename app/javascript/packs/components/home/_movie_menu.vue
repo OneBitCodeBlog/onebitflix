@@ -12,7 +12,7 @@
       </v-flex>
       <Details v-if="contentActive == 'details'" :watchable="watchable" />
       <!-- <Episodes v-if="contentActive == 'episodes'"/> -->
-      <Reviews v-if="contentActive == 'reviews'" :watchable="watchable" />
+      <Reviews v-if="contentActive == 'reviews'" :reviews="reviews" :id="watchable.attributes.id" :type="watchable.type"/>
     </v-layout>
     <v-layout row wrap class="navigation">
       <v-flex md6>
@@ -68,7 +68,8 @@
        this.closeDetails();
       },
       ...mapActions({
-        getWatchable: 'Watchable/getWatchable'
+        getWatchable: 'Watchable/getWatchable',
+        getReviews: 'Review/index'
       })
     },
     components: {
@@ -78,16 +79,20 @@
     watch: { 
       id: function() {
         this.getWatchable({id: this.id, type: this.type})
+        this.getReviews({id: this.id, type: this.type})
       },
       serie: function() {
         this.getWatchable({id: this.id, type: this.type})
+        this.getReviews({id: this.id, type: this.type})
       }
     },
     mounted() {
       this.getWatchable({id: this.id, type: this.type})
+      this.getReviews({id: this.id, type: this.type})
     },
     computed: mapState({
       watchable: state => state.Watchable.watchable,
+      reviews: state => state.Review.reviews,
     })
   }
 </script>
