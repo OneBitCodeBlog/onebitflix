@@ -1,6 +1,7 @@
 class Api::V1::MovieSerializer
   include FastJsonapi::ObjectSerializer
   attributes :id, :title, :description, :episode_number, :serie_id
+  belongs_to :serie
 
   attribute :category do |object|
     object.category&.name

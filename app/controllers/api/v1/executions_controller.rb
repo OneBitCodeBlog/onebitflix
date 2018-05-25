@@ -5,11 +5,14 @@ class Api::V1::ExecutionsController < ApplicationController
   def show
     movie = Movie.find(params[:id])
     @player = movie.players.find_or_create_by(end_date: nil, user: current_user)
-    render json: Api::V1::PlayerSerializer.new(@player, include: [:movie]).serialized_json
+    render json: Api::V1::PlayerSerializer.new(@player, include: [:movie, :'movie.serie']).serialized_json
   end
-
+  
   def update
     if @player.update(player_params.merge(user: current_user))
+      if @player.movie.serie
+        @player.movie.serie.update(last_watched_episode: @player.movie)
+      end
       render json: Api::V1::PlayerSerializer.new(@player, include: [:movie]).serialized_json
     else
       render json: { errors: @player.errors.full_messages }, status: :unprocessable_entity
