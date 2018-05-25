@@ -8,5 +8,19 @@ export default {
         type: 'highlight'
       }
     })
+  },
+  getCategories (){  
+    return Http.get('/dashboard', {
+      params: {
+        type: 'category'
+      }
+    });
+  },
+  getKeepWatching (){  
+    return Http.get('/dashboard', {
+      params: {
+        type: 'keep_watching'
+      }
+    });
   }
 }
