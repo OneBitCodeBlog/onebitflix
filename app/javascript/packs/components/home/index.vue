@@ -1,6 +1,6 @@
    <template>
      <div>
-        <Featured :movie="featuredMovie"/>
+        <Featured :movie="featuredMovie"  v-if="featuredMovie"/>
         <MovieList v-for='(category, index) in categories'
                     :key='index'
                     :name='category.name'
@@ -10,13 +10,6 @@
 
   <script>
     // ------- Dados Fake apenas para testarmos o layout -------- //
-    const featuredMovie = {
-                            id: 1,
-                            title: 'Criando uma API completa com Ruby On Rails',
-                            description: 'Saber como criar e consumir API’s é fundamental para qualquer programador, então nessa pequena série nós vamos ver o que é essencial para criar uma usando RoR.',
-                            featured_thumbnail_url: 'https://onebitcode.com/wp-content/uploads/2018/05/bg-example.png'
-                          }
-
 
     const categoriesMock = [
       {
@@ -51,19 +44,25 @@
 
     import Featured from './_featured.vue'
     import MovieList from './_movie_list.vue'
+    import { mapState } from 'vuex';
 
-     export default {
-       data () {
-         return {
-            featuredMovie: featuredMovie,
-            categories: categoriesMock
-         }
-       },
-       components: {
-         'Featured': Featured,
-         'MovieList': MovieList
-       }
-     }
+    export default {
+      data () {
+        return {
+          categories: categoriesMock
+        }
+      },
+      components: {
+        'Featured': Featured,
+        'MovieList': MovieList
+      },
+      mounted() {
+        this.$store.dispatch('Watchable/getFeatured');
+      },
+      computed: mapState({
+        featuredMovie: state => state.Watchable.featured,
+      })
+    }
    </script>
 
    <style scoped>
