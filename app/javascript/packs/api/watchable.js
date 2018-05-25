@@ -1,4 +1,5 @@
 import Http from './http';
+import { serialize } from 'uri-js';
 
 
 export default {
@@ -22,5 +23,8 @@ export default {
         type: 'keep_watching'
       }
     });
+  },
+  getWatchable (id, type){
+    return Http.get(`/${type.toLowerCase()}s/${id}`);
   }
 }

@@ -5,7 +5,8 @@ const Watchable = {
     state: {
       featured: null,
       keepWatching: null,
-      categories: []
+      categories: [],
+      watchable: null
     },
     mutations: {
       setFeatured(state, watchable) {
@@ -16,6 +17,9 @@ const Watchable = {
       },
       setCategories(state, categories) {
         state.categories = categories.data;
+      },
+      setWatchable(state, watchable) {
+        state.watchable = watchable.data;
       }
     },
     actions: {
@@ -42,6 +46,15 @@ const Watchable = {
           .then(response => response.data)
           .then(categories => {
             context.commit('setCategories', categories)
+          }).catch(function (error) {
+            console.log(error);
+          });
+      },
+      getWatchable(context, {id, type}) {
+        Api.Watchable.getWatchable(id, type)
+          .then(response => response.data)
+          .then(watchable => {
+            context.commit('setWatchable', watchable)
           }).catch(function (error) {
             console.log(error);
           });

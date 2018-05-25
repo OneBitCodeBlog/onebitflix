@@ -3,7 +3,9 @@
     <v-flex md4 mb-3 mt-2 offset-md1 xs10 offset-xs1>
       <v-layout row wrap>
         <v-flex md12>
-          <h4 class="subtitle white--text" v-if="watchable.type == 'serie'">10 Episódios</h4>
+          <h4 class="subtitle white--text" v-if="watchable.type == 'serie'">
+            {{ watchable.relationships.episodes.data.length }} Episódios
+          </h4>
         </v-flex>
       </v-layout>
       <v-layout row wrap mt-3>

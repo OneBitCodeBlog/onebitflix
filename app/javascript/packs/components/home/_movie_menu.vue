@@ -37,19 +37,8 @@
 <script>
   import Details from './_details.vue';
   import Reviews from './_reviews.vue';
-
-  // ------- Dados Fake apenas para testarmos o layout -------- //
-  const watchable = {
-    id: 1,
-    type: 'serie',
-    attributes: {
-      title: 'Ruby On Rails API Completa',
-      reviews_count: 2,
-      description: 'Saber como criar e consumir API’s é fundamental para qualquer programador, então nessa pequena série nós vamos ver o que é essencial para criar uma usando RoR.',
-      category: 'Ruby On Rails',
-      thumbnail_cover_url: 'https://onebitcode.com/wp-content/uploads/2018/05/rails-admin-serie-cover.png'
-    }
-  }
+  import { mapActions } from 'vuex'
+  import { mapState } from 'vuex'
 
   export default {
     props: {
@@ -69,7 +58,6 @@
     data () {
       return { 
         contentActive: 'details',
-        watchable: watchable
       }
     },
     methods: {
@@ -78,12 +66,29 @@
       },
       close () {
        this.closeDetails();
-      }
+      },
+      ...mapActions({
+        getWatchable: 'Watchable/getWatchable'
+      })
     },
     components: {
       Details: Details,
       Reviews: Reviews
-    }
+    },
+    watch: { 
+      id: function() {
+        this.getWatchable({id: this.id, type: this.type})
+      },
+      serie: function() {
+        this.getWatchable({id: this.id, type: this.type})
+      }
+    },
+    mounted() {
+      this.getWatchable({id: this.id, type: this.type})
+    },
+    computed: mapState({
+      watchable: state => state.Watchable.watchable,
+    })
   }
 </script>
 
