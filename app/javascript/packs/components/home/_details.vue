@@ -3,9 +3,7 @@
     <v-flex md4 mb-3 mt-2 offset-md1 xs10 offset-xs1>
       <v-layout row wrap>
         <v-flex md12>
-          <h4 class="subtitle white--text" v-if="watchable.type == 'serie'">
-            {{ watchable.relationships.episodes.data.length }} Episódios
-          </h4>
+          <h4 class="subtitle white--text" v-if="watchable.type == 'serie'">10 Episódios</h4>
         </v-flex>
       </v-layout>
       <v-layout row wrap mt-3>
@@ -24,8 +22,23 @@
           <v-btn color="red"
                  text-color="white"
                  large
+                 :to="'/watch/'+ watchable.id"
                  class="white--text"
-                 :to="'/watch/'+ watchable.id" >Assistir
+                 v-if="watchable.type == 'movie'">Assistir
+          </v-btn>
+          <v-btn color="red"
+                 text-color="white"
+                 large
+                 :to="'/watch/'+ watchable.attributes.last_watched_episode"
+                 class="white--text"
+                 v-else-if="watchable.attributes.last_watched_episode">Assistir
+          </v-btn>
+          <v-btn color="red"
+                 text-color="white"
+                 large
+                 class="white--text"
+                 :to="'/watch/'+ watchable.relationships.episodes.data[0].id"
+                 v-else>Assistir
           </v-btn>
         </v-flex>
         <v-flex sm3 md4>

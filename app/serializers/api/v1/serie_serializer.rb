@@ -3,6 +3,16 @@ class Api::V1::SerieSerializer
   attributes :id, :title, :description
   has_many :episodes, record_type: :movies, serializer: :movie
 
+  attribute :episodes do |object|
+    object.episodes.map do |e|
+      {
+        title: e.title,
+        id: e.id,
+        thumbnail_url:  AWS_BUCKET.object("thumbnails/#{e.thumbnail_key}").presigned_url(:get, expires_in: 120)
+      }
+    end
+  end
+
   attribute :category do |object|
     object.category.name
   end
