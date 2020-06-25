@@ -148,7 +148,7 @@ GEM
       arel (>= 6)
     public_suffix (3.0.2)
     puma (3.11.4)
-    rack (2.0.5)
+    rack (2.2.3)
     rack-proxy (0.6.4)
       rack
     rack-test (1.0.0)
